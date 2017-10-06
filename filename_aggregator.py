@@ -1,4 +1,4 @@
-# !/usr/local/bin/python3
+#!/usr/local/bin/python3
 
 import os
 import ntpath
@@ -10,7 +10,7 @@ def all_files(directory):
    for dirpath, dirs, filenames in os.walk(directory):
        for f in filenames:
            dirs[:] = [d for d in dirs if not d[0] == '.'] #https://stackoverflow.com/questions/13454164/os-walk-without-hidden-folders
-           if f[0] != '.':
+           if f[0] != '.' and f not in [OUTPUT_CSV_FILENAME, os.path.basename(__file__)]:
                yield os.path.abspath(os.path.join(dirpath, f))
 
 csv_filenames = []
