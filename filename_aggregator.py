@@ -37,8 +37,8 @@ def all_current_filenames():
    directory = os.getcwd()
 
    for dirpath, dirs, filenames in os.walk(directory):
+       dirs[:] = [d for d in dirs if not d[0] == '.'] #https://stackoverflow.com/questions/13454164/os-walk-without-hidden-folders
        for filename in filenames:
-           dirs[:] = [d for d in dirs if not d[0] == '.'] #https://stackoverflow.com/questions/13454164/os-walk-without-hidden-folders
            if filename[0] != '.' and filename not in [OUTPUT_CSV_FILENAME, os.path.basename(__file__)]:
                all_current_filenames.append(os.path.abspath(os.path.join(dirpath, filename)))
    return all_current_filenames
